@@ -1,0 +1,28 @@
+{
+  "fiberApp": {
+    "planning": {
+      "home": {
+        "title": "Plannings",
+        "createLabel": "Create a new Planning",
+        "createOrEditLabel": "Create or edit a Planning",
+        "notFound": "No Planning found"
+      },
+      "created": "A new Planning is created with identifier {{ param }}",
+      "updated": "A Planning is updated with identifier {{ param }}",
+      "deleted": "A Planning is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Planning {{ id }}?"
+      },
+      "detail": {
+        "title": "Planning"
+      },
+      "initialTech": "Initial Tech",
+      "open": "Open",
+      "dateTimeCreation": "Date Time Creation",
+      "lastNameTech": "Last Name Tech",
+      "firstNameTech": "First Name Tech",
+      "inters": "Inters",
+      "user": "User"
+    }
+  }
+}

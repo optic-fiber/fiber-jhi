@@ -43,6 +43,9 @@ public class CacheConfiguration {
             createCache(cm, com.cheroliv.fiber.domain.User.class.getName());
             createCache(cm, com.cheroliv.fiber.domain.Authority.class.getName());
             createCache(cm, com.cheroliv.fiber.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.cheroliv.fiber.domain.Inter.class.getName());
+            createCache(cm, com.cheroliv.fiber.domain.Planning.class.getName());
+            createCache(cm, com.cheroliv.fiber.domain.Planning.class.getName() + ".inters");
             // jhipster-needle-ehcache-add-entry
         };
     }

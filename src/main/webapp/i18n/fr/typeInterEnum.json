@@ -1,0 +1,13 @@
+{
+  "fiberApp": {
+    "TypeInterEnum": {
+      "null": "",
+      "BAAP": "BAAP",
+      "BAOC": "BAOC",
+      "BAFA": "BAFA",
+      "BAST": "BAST",
+      "PLP": "PLP",
+      "SAV": "SAV"
+    }
+  }
+}

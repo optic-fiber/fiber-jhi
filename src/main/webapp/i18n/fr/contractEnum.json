@@ -1,0 +1,10 @@
+{
+  "fiberApp": {
+    "ContractEnum": {
+      "null": "",
+      "LM": "LM",
+      "IQ": "IQ",
+      "CABLE_ROUTING": "CABLE_ROUTING"
+    }
+  }
+}

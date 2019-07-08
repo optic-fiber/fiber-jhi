@@ -1,0 +1,28 @@
+{
+  "fiberApp": {
+    "inter": {
+      "home": {
+        "title": "Inters",
+        "createLabel": "Crear nuevo Inter",
+        "createOrEditLabel": "Crear o editar Inter",
+        "notFound": "No Inter found"
+      },
+      "created": "Un nuevo Inter ha sido creado con el identificador {{ param }}",
+      "updated": "Un Inter ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Inter ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Inter {{ id }}?"
+      },
+      "detail": {
+        "title": "Inter"
+      },
+      "nd": "Nd",
+      "typeInter": "Type Inter",
+      "contract": "Contract",
+      "lastNameClient": "Last Name Client",
+      "firstNameClient": "First Name Client",
+      "dateTimeInter": "Date Time Inter",
+      "planning": "Planning"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="inter">
+            <h2><span jhiTranslate="fiberApp.inter.detail.title">Inter</span> {{inter.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="fiberApp.inter.nd">Nd</span></dt>
+                <dd>
+                    <span>{{inter.nd}}</span>
+                </dd>
+                <dt><span jhiTranslate="fiberApp.inter.typeInter">Type Inter</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'fiberApp.TypeInterEnum.' + inter.typeInter}}">{{inter.typeInter}}</span>
+                </dd>
+                <dt><span jhiTranslate="fiberApp.inter.contract">Contract</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'fiberApp.ContractEnum.' + inter.contract}}">{{inter.contract}}</span>
+                </dd>
+                <dt><span jhiTranslate="fiberApp.inter.lastNameClient">Last Name Client</span></dt>
+                <dd>
+                    <span>{{inter.lastNameClient}}</span>
+                </dd>
+                <dt><span jhiTranslate="fiberApp.inter.firstNameClient">First Name Client</span></dt>
+                <dd>
+                    <span>{{inter.firstNameClient}}</span>
+                </dd>
+                <dt><span jhiTranslate="fiberApp.inter.dateTimeInter">Date Time Inter</span></dt>
+                <dd>
+                    <span>{{inter.dateTimeInter}}</span>
+                </dd>
+                <dt><span jhiTranslate="fiberApp.inter.planning">Planning</span></dt>
+                <dd>
+                    <div *ngIf="inter.planning">
+                        <a [routerLink]="['/planning', inter.planning?.id, 'view']">{{inter.planning?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/inter', inter.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

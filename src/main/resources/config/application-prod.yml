@@ -33,9 +33,9 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/fiber
-    username: fiber
-    password:
+    url: jdbc:postgresql://localhost:5432/fiberjhipster
+    username: tech
+    password: tech
     hikari:
       poolName: Hikari
       auto-commit: false

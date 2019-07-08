@@ -16,6 +16,7 @@ buildscript {
 
 plugins {
     id "java"
+    id "groovy"
     id "maven"
     id "idea"
     id "jacoco"
@@ -188,6 +189,9 @@ repositories {
 }
 
 dependencies {
+    implementation("org.codehaus.groovy:groovy-all:$groovy_version") {
+        exclude group: "org.junit", module: "junit"
+    }
     // import JHipster dependencies BOM
     implementation platform("io.github.jhipster:jhipster-dependencies:${jhipster_dependencies_version}" )
 
@@ -287,4 +291,5 @@ if (project.hasProperty("nodeInstall")) {
 }
 
 compileJava.dependsOn processResources
+compileGroovy.dependsOn processResources
 processResources.dependsOn bootBuildInfo

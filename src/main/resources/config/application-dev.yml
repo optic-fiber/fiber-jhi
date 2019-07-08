@@ -36,9 +36,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/fiber
-    username: fiber
-    password:
+    url: jdbc:postgresql://localhost:5432/fiberjhipsterdev
+    username: tech
+    password: tech
     hikari:
       poolName: Hikari
       auto-commit: false

@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="planning">
+            <h2><span jhiTranslate="fiberApp.planning.detail.title">Planning</span> {{planning.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="fiberApp.planning.initialTech">Initial Tech</span></dt>
+                <dd>
+                    <span>{{planning.initialTech}}</span>
+                </dd>
+                <dt><span jhiTranslate="fiberApp.planning.open">Open</span></dt>
+                <dd>
+                    <span>{{planning.open}}</span>
+                </dd>
+                <dt><span jhiTranslate="fiberApp.planning.dateTimeCreation">Date Time Creation</span></dt>
+                <dd>
+                    <span>{{planning.dateTimeCreation}}</span>
+                </dd>
+                <dt><span jhiTranslate="fiberApp.planning.lastNameTech">Last Name Tech</span></dt>
+                <dd>
+                    <span>{{planning.lastNameTech}}</span>
+                </dd>
+                <dt><span jhiTranslate="fiberApp.planning.firstNameTech">First Name Tech</span></dt>
+                <dd>
+                    <span>{{planning.firstNameTech}}</span>
+                </dd>
+                <dt><span jhiTranslate="fiberApp.planning.user">User</span></dt>
+                <dd>
+                    {{planning.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/planning', planning.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

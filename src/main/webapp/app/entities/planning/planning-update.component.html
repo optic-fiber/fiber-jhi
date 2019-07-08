@@ -1,0 +1,109 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-planning-heading" jhiTranslate="fiberApp.planning.home.createOrEditLabel">Create or edit a Planning</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="fiberApp.planning.initialTech" for="field_initialTech">Initial Tech</label>
+                    <input type="text" class="form-control" name="initialTech" id="field_initialTech"
+                           formControlName="initialTech"/>
+                    <div *ngIf="editForm.get('initialTech').invalid && (editForm.get('initialTech').dirty || editForm.get('initialTech').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('initialTech').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('initialTech').errors.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 2 }">
+                        This field is required to be at least 2 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="fiberApp.planning.open" for="field_open">Open</label>
+                    <input type="checkbox" class="form-control" name="open" id="field_open"
+                           formControlName="open"/>
+                    <div *ngIf="editForm.get('open').invalid && (editForm.get('open').dirty || editForm.get('open').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('open').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="fiberApp.planning.dateTimeCreation" for="field_dateTimeCreation">Date Time Creation</label>
+                    <div class="d-flex">
+                        <input id="field_dateTimeCreation" type="datetime-local" class="form-control" name="dateTimeCreation" formControlName="dateTimeCreation" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('dateTimeCreation').invalid && (editForm.get('dateTimeCreation').dirty || editForm.get('dateTimeCreation').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dateTimeCreation').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('dateTimeCreation').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="fiberApp.planning.lastNameTech" for="field_lastNameTech">Last Name Tech</label>
+                    <input type="text" class="form-control" name="lastNameTech" id="field_lastNameTech"
+                           formControlName="lastNameTech"/>
+                    <div *ngIf="editForm.get('lastNameTech').invalid && (editForm.get('lastNameTech').dirty || editForm.get('lastNameTech').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lastNameTech').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lastNameTech').errors.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 1 }">
+                        This field is required to be at least 1 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lastNameTech').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="fiberApp.planning.firstNameTech" for="field_firstNameTech">First Name Tech</label>
+                    <input type="text" class="form-control" name="firstNameTech" id="field_firstNameTech"
+                           formControlName="firstNameTech"/>
+                    <div *ngIf="editForm.get('firstNameTech').invalid && (editForm.get('firstNameTech').dirty || editForm.get('firstNameTech').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('firstNameTech').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="fiberApp.planning.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option *ngIf="!editForm.get('user').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('user').invalid && (editForm.get('user').dirty || editForm.get('user').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('user').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
