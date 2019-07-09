@@ -59,6 +59,9 @@ public class InterResourceIT {
     private static final ZonedDateTime DEFAULT_DATE_TIME_INTER = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_DATE_TIME_INTER = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
+    private static final Boolean DEFAULT_COMPLEX = false;
+    private static final Boolean UPDATED_COMPLEX = true;
+
     @Autowired
     private InterRepository interRepository;
 
@@ -106,7 +109,8 @@ public class InterResourceIT {
             .contract(DEFAULT_CONTRACT)
             .lastNameClient(DEFAULT_LAST_NAME_CLIENT)
             .firstNameClient(DEFAULT_FIRST_NAME_CLIENT)
-            .dateTimeInter(DEFAULT_DATE_TIME_INTER);
+            .dateTimeInter(DEFAULT_DATE_TIME_INTER)
+            .complex(DEFAULT_COMPLEX);
         // Add required entity
         Planning planning;
         if (TestUtil.findAll(em, Planning.class).isEmpty()) {
@@ -132,7 +136,8 @@ public class InterResourceIT {
             .contract(UPDATED_CONTRACT)
             .lastNameClient(UPDATED_LAST_NAME_CLIENT)
             .firstNameClient(UPDATED_FIRST_NAME_CLIENT)
-            .dateTimeInter(UPDATED_DATE_TIME_INTER);
+            .dateTimeInter(UPDATED_DATE_TIME_INTER)
+            .complex(UPDATED_COMPLEX);
         // Add required entity
         Planning planning;
         if (TestUtil.findAll(em, Planning.class).isEmpty()) {
@@ -172,6 +177,7 @@ public class InterResourceIT {
         assertThat(testInter.getLastNameClient()).isEqualTo(DEFAULT_LAST_NAME_CLIENT);
         assertThat(testInter.getFirstNameClient()).isEqualTo(DEFAULT_FIRST_NAME_CLIENT);
         assertThat(testInter.getDateTimeInter()).isEqualTo(DEFAULT_DATE_TIME_INTER);
+        assertThat(testInter.isComplex()).isEqualTo(DEFAULT_COMPLEX);
     }
 
     @Test
@@ -300,7 +306,8 @@ public class InterResourceIT {
             .andExpect(jsonPath("$.[*].contract").value(hasItem(DEFAULT_CONTRACT.toString())))
             .andExpect(jsonPath("$.[*].lastNameClient").value(hasItem(DEFAULT_LAST_NAME_CLIENT.toString())))
             .andExpect(jsonPath("$.[*].firstNameClient").value(hasItem(DEFAULT_FIRST_NAME_CLIENT.toString())))
-            .andExpect(jsonPath("$.[*].dateTimeInter").value(hasItem(sameInstant(DEFAULT_DATE_TIME_INTER))));
+            .andExpect(jsonPath("$.[*].dateTimeInter").value(hasItem(sameInstant(DEFAULT_DATE_TIME_INTER))))
+            .andExpect(jsonPath("$.[*].complex").value(hasItem(DEFAULT_COMPLEX.booleanValue())));
     }
     
     @Test
@@ -319,7 +326,8 @@ public class InterResourceIT {
             .andExpect(jsonPath("$.contract").value(DEFAULT_CONTRACT.toString()))
             .andExpect(jsonPath("$.lastNameClient").value(DEFAULT_LAST_NAME_CLIENT.toString()))
             .andExpect(jsonPath("$.firstNameClient").value(DEFAULT_FIRST_NAME_CLIENT.toString()))
-            .andExpect(jsonPath("$.dateTimeInter").value(sameInstant(DEFAULT_DATE_TIME_INTER)));
+            .andExpect(jsonPath("$.dateTimeInter").value(sameInstant(DEFAULT_DATE_TIME_INTER)))
+            .andExpect(jsonPath("$.complex").value(DEFAULT_COMPLEX.booleanValue()));
     }
 
     @Test
@@ -348,7 +356,8 @@ public class InterResourceIT {
             .contract(UPDATED_CONTRACT)
             .lastNameClient(UPDATED_LAST_NAME_CLIENT)
             .firstNameClient(UPDATED_FIRST_NAME_CLIENT)
-            .dateTimeInter(UPDATED_DATE_TIME_INTER);
+            .dateTimeInter(UPDATED_DATE_TIME_INTER)
+            .complex(UPDATED_COMPLEX);
 
         restInterMockMvc.perform(put("/api/inters")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -365,6 +374,7 @@ public class InterResourceIT {
         assertThat(testInter.getLastNameClient()).isEqualTo(UPDATED_LAST_NAME_CLIENT);
         assertThat(testInter.getFirstNameClient()).isEqualTo(UPDATED_FIRST_NAME_CLIENT);
         assertThat(testInter.getDateTimeInter()).isEqualTo(UPDATED_DATE_TIME_INTER);
+        assertThat(testInter.isComplex()).isEqualTo(UPDATED_COMPLEX);
     }
 
     @Test

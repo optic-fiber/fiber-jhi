@@ -1,17 +1,17 @@
 package com.cheroliv.fiber.domain;
+
+import com.cheroliv.fiber.domain.enumeration.ContractEnum;
+import com.cheroliv.fiber.domain.enumeration.TypeInterEnum;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-
-import com.cheroliv.fiber.domain.enumeration.TypeInterEnum;
-
-import com.cheroliv.fiber.domain.enumeration.ContractEnum;
 
 /**
  * A Inter.
@@ -23,7 +23,9 @@ import com.cheroliv.fiber.domain.enumeration.ContractEnum;
     @Index(name = "`idx_inter_contract`", columnList = "`contract`"),
     @Index(name = "`idx_inter_date_time_inter`", columnList = "`date_time_inter`"),
     @Index(name = "`idx_inter_first_name_client`", columnList = "`first_name_client`"),
-    @Index(name = "`idx_inter_last_name_client`", columnList = "`last_name_client`")})
+    @Index(name = "`idx_inter_last_name_client`", columnList = "`last_name_client`"),
+    @Index(name = "`idx_inter_complex`", columnList = "`complex`")
+})
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Inter implements Serializable {
 
@@ -60,7 +62,13 @@ public class Inter implements Serializable {
 
     @NotNull
     @Column(name = "date_time_inter", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING,
+        pattern = "yyyy-MM-dd'T'HH:mmZ")
+//        pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private ZonedDateTime dateTimeInter;
+
+    @Column(name = "complex")
+    private Boolean complex;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -80,17 +88,21 @@ public class Inter implements Serializable {
         return nd;
     }
 
+    public void setNd(String nd) {
+        this.nd = nd;
+    }
+
     public Inter nd(String nd) {
         this.nd = nd;
         return this;
     }
 
-    public void setNd(String nd) {
-        this.nd = nd;
-    }
-
     public TypeInterEnum getTypeInter() {
         return typeInter;
+    }
+
+    public void setTypeInter(TypeInterEnum typeInter) {
+        this.typeInter = typeInter;
     }
 
     public Inter typeInter(TypeInterEnum typeInter) {
@@ -98,12 +110,12 @@ public class Inter implements Serializable {
         return this;
     }
 
-    public void setTypeInter(TypeInterEnum typeInter) {
-        this.typeInter = typeInter;
-    }
-
     public ContractEnum getContract() {
         return contract;
+    }
+
+    public void setContract(ContractEnum contract) {
+        this.contract = contract;
     }
 
     public Inter contract(ContractEnum contract) {
@@ -111,12 +123,12 @@ public class Inter implements Serializable {
         return this;
     }
 
-    public void setContract(ContractEnum contract) {
-        this.contract = contract;
-    }
-
     public String getLastNameClient() {
         return lastNameClient;
+    }
+
+    public void setLastNameClient(String lastNameClient) {
+        this.lastNameClient = lastNameClient;
     }
 
     public Inter lastNameClient(String lastNameClient) {
@@ -124,12 +136,12 @@ public class Inter implements Serializable {
         return this;
     }
 
-    public void setLastNameClient(String lastNameClient) {
-        this.lastNameClient = lastNameClient;
-    }
-
     public String getFirstNameClient() {
         return firstNameClient;
+    }
+
+    public void setFirstNameClient(String firstNameClient) {
+        this.firstNameClient = firstNameClient;
     }
 
     public Inter firstNameClient(String firstNameClient) {
@@ -137,12 +149,12 @@ public class Inter implements Serializable {
         return this;
     }
 
-    public void setFirstNameClient(String firstNameClient) {
-        this.firstNameClient = firstNameClient;
-    }
-
     public ZonedDateTime getDateTimeInter() {
         return dateTimeInter;
+    }
+
+    public void setDateTimeInter(ZonedDateTime dateTimeInter) {
+        this.dateTimeInter = dateTimeInter;
     }
 
     public Inter dateTimeInter(ZonedDateTime dateTimeInter) {
@@ -150,21 +162,30 @@ public class Inter implements Serializable {
         return this;
     }
 
-    public void setDateTimeInter(ZonedDateTime dateTimeInter) {
-        this.dateTimeInter = dateTimeInter;
+    public Boolean isComplex() {
+        return complex;
+    }
+
+    public Inter complex(Boolean complex) {
+        this.complex = complex;
+        return this;
+    }
+
+    public void setComplex(Boolean complex) {
+        this.complex = complex;
     }
 
     public Planning getPlanning() {
         return planning;
     }
 
+    public void setPlanning(Planning planning) {
+        this.planning = planning;
+    }
+
     public Inter planning(Planning planning) {
         this.planning = planning;
         return this;
-    }
-
-    public void setPlanning(Planning planning) {
-        this.planning = planning;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -194,6 +215,7 @@ public class Inter implements Serializable {
             ", lastNameClient='" + getLastNameClient() + "'" +
             ", firstNameClient='" + getFirstNameClient() + "'" +
             ", dateTimeInter='" + getDateTimeInter() + "'" +
+            ", complex='" + isComplex() + "'" +
             "}";
     }
 }

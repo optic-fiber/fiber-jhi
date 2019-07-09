@@ -1,11 +1,11 @@
-id;nd;type_inter;contract;last_name_client;first_name_client;date_time_inter;planning_id
-1;mobile Fis;SAV;CABLE_ROUTING;Savings Account alarm;Tasty Metal Bacon;2019-07-07T16:05:14;3
-2;ChipsXXXXX;BAOC;IQ;Namibia;Steel zero administration;2019-07-08T05:49:11;3
-3;Licensed S;BAST;CABLE_ROUTING;Table Small Frozen Sausages Planner;envisioneer Music Public-key;2019-07-08T08:49:40;5
-4;Rubber Buc;BAAP;CABLE_ROUTING;Industrial;connect Markets Chief;2019-07-08T00:15:46;8
-5;archive Ge;BAST;CABLE_ROUTING;Plastic;Car Industrial deliverables;2019-07-08T05:08:07;2
-6;BooksXXXXX;BAOC;CABLE_ROUTING;generating Highway Ergonomic;moratorium moratorium;2019-07-07T21:06:07;6
-7;tangible M;PLP;CABLE_ROUTING;Poland;Small partnerships;2019-07-08T09:46:16;1
-8;withdrawal;PLP;IQ;Money Market Account;Salad Web virtual;2019-07-07T23:24:38;2
-9;Squares mi;BAOC;LM;Profit-focused;Jewelery cutting-edge;2019-07-08T07:17:51;1
-10;BordersXXX;SAV;IQ;Gloves sky blue Oklahoma;robust Engineer;2019-07-07T15:30:49;3
+id;nd;type_inter;contract;last_name_client;first_name_client;date_time_inter;complex;planning_id
+1;mobile Fis;PLP;LM;Savings Account alarm;Tasty Metal Bacon;2019-07-07T23:12:05;false;1
+2;OfficerXXX;BAOC;IQ;Steel zero administration;Multi-channelled Licensed;2019-07-08T06:53:07;false;4
+3;Planner Ca;BAAP;LM;Nakfa;Bahamian Dollar Investment Account;2019-07-08T01:43:47;false;2
+4;incentiviz;BAFA;IQ;connect Markets Chief;capacitor archive;2019-07-08T08:02:09;false;6
+5;TacticsXXX;PLP;IQ;Plastic;Car Industrial deliverables;2019-07-08T12:14:57;false;3
+6;JeweleryXX;BAFA;IQ;Frozen IB;Highway Ergonomic;2019-07-08T12:49:36;false;7
+7;paymentXXX;BAST;IQ;synthesize Idaho compress;Sleek Metal Table Small;2019-07-08T11:10:56;false;3
+8;DynamicXXX;SAV;CABLE_ROUTING;User-centric;Money Market Account;2019-07-08T05:03:06;false;9
+9;Auto Loan ;SAV;IQ;support Gorgeous;withdrawal;2019-07-08T21:42:50;true;4
+10;ability Ha;PLP;IQ;Mauritania;facilitate Tasty Concrete Chips Exclusive;2019-07-08T05:00:55;false;8

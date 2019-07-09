@@ -29,6 +29,7 @@ export class InterUpdateComponent implements OnInit {
     lastNameClient: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
     firstNameClient: [null, [Validators.maxLength(100)]],
     dateTimeInter: [null, [Validators.required]],
+    complex: [],
     planning: [null, Validators.required]
   });
 
@@ -63,6 +64,7 @@ export class InterUpdateComponent implements OnInit {
       lastNameClient: inter.lastNameClient,
       firstNameClient: inter.firstNameClient,
       dateTimeInter: inter.dateTimeInter != null ? inter.dateTimeInter.format(DATE_TIME_FORMAT) : null,
+      complex: inter.complex,
       planning: inter.planning
     });
   }
@@ -94,6 +96,7 @@ export class InterUpdateComponent implements OnInit {
         this.editForm.get(['dateTimeInter']).value != null
           ? moment(this.editForm.get(['dateTimeInter']).value, DATE_TIME_FORMAT)
           : undefined,
+      complex: this.editForm.get(['complex']).value,
       planning: this.editForm.get(['planning']).value
     };
   }

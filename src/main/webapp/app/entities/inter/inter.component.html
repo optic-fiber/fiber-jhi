@@ -24,6 +24,7 @@
             <th jhiSortBy="lastNameClient"><span jhiTranslate="fiberApp.inter.lastNameClient">Last Name Client</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="firstNameClient"><span jhiTranslate="fiberApp.inter.firstNameClient">First Name Client</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="dateTimeInter"><span jhiTranslate="fiberApp.inter.dateTimeInter">Date Time Inter</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="complex"><span jhiTranslate="fiberApp.inter.complex">Complex</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="planning.id"><span jhiTranslate="fiberApp.inter.planning">Planning</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -37,6 +38,7 @@
                 <td>{{inter.lastNameClient}}</td>
                 <td>{{inter.firstNameClient}}</td>
                 <td>{{inter.dateTimeInter | date:'medium'}}</td>
+                <td>{{inter.complex}}</td>
                 <td>
                     <div *ngIf="inter.planning">
                         <a [routerLink]="['../planning', inter.planning?.id, 'view' ]" >{{inter.planning?.id}}</a>

@@ -24,6 +24,7 @@ export interface IInter {
   lastNameClient?: string;
   firstNameClient?: string;
   dateTimeInter?: Moment;
+  complex?: boolean;
   planning?: IPlanning;
 }
 
@@ -36,6 +37,9 @@ export class Inter implements IInter {
     public lastNameClient?: string,
     public firstNameClient?: string,
     public dateTimeInter?: Moment,
+    public complex?: boolean,
     public planning?: IPlanning
-  ) {}
+  ) {
+    this.complex = this.complex || false;
+  }
 }

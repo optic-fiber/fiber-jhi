@@ -94,7 +94,7 @@ if (OperatingSystem.current().isWindows()) {
 defaultTasks "bootRun"
 
 group = "com.cheroliv.fiber"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 
 description = ""
 
@@ -104,6 +104,10 @@ springBoot {
 
 test {
     useJUnitPlatform()
+//    useJUnitPlatform{
+//        excludeEngines 'junit-vintage'
+//        includeEngines 'junit-jupiter'
+//    }
     exclude "**/*IT*", "**/*IntTest*"
     testLogging {
         events 'FAILED', 'SKIPPED'
@@ -111,7 +115,7 @@ test {
     // uncomment if the tests reports are not generated
     // see https://github.com/jhipster/generator-jhipster/pull/2771 and https://github.com/jhipster/generator-jhipster/pull/4484
     // ignoreFailures true
-    reports.html.enabled = false
+    reports.html.enabled = true
 }
 
 task integrationTest(type: Test) {
@@ -126,7 +130,7 @@ task integrationTest(type: Test) {
     // uncomment if the tests reports are not generated
     // see https://github.com/jhipster/generator-jhipster/pull/2771 and https://github.com/jhipster/generator-jhipster/pull/4484
     // ignoreFailures true
-    reports.html.enabled = false
+    reports.html.enabled = true
 }
 
 check.dependsOn integrationTest
@@ -269,8 +273,16 @@ dependencies {
     testImplementation "junit:junit"
     testImplementation "org.mockito:mockito-core"
     testImplementation "org.hamcrest:hamcrest-library"
-    testImplementation "com.h2database:h2"
+    testImplementation "org.postgresql:postgresql"
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_jupiter_version"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit_jupiter_version"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$junit_jupiter_version"
+    testImplementation "org.junit.jupiter:junit-jupiter:$junit_jupiter_version"
+    testImplementation "org.junit.platform:junit-platform-commons:$junit_platform_version"
+    testImplementation "org.junit.platform:junit-platform-launcher:$junit_platform_version"
 }
 
 task cleanResources(type: Delete) {
@@ -290,6 +302,6 @@ if (project.hasProperty("nodeInstall")) {
     }
 }
 
-compileJava.dependsOn processResources
+//compileJava.dependsOn processResources
 compileGroovy.dependsOn processResources
 processResources.dependsOn bootBuildInfo

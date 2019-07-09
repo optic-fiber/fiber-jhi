@@ -27,7 +27,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new Inter(0, 'AAAAAAA', TypeInterEnum.BAAP, ContractEnum.LM, 'AAAAAAA', 'AAAAAAA', currentDate);
+      elemDefault = new Inter(0, 'AAAAAAA', TypeInterEnum.BAAP, ContractEnum.LM, 'AAAAAAA', 'AAAAAAA', currentDate, false);
     });
 
     describe('Service methods', () => {
@@ -79,7 +79,8 @@ describe('Service Tests', () => {
             contract: 'BBBBBB',
             lastNameClient: 'BBBBBB',
             firstNameClient: 'BBBBBB',
-            dateTimeInter: currentDate.format(DATE_TIME_FORMAT)
+            dateTimeInter: currentDate.format(DATE_TIME_FORMAT),
+            complex: true
           },
           elemDefault
         );
@@ -107,7 +108,8 @@ describe('Service Tests', () => {
             contract: 'BBBBBB',
             lastNameClient: 'BBBBBB',
             firstNameClient: 'BBBBBB',
-            dateTimeInter: currentDate.format(DATE_TIME_FORMAT)
+            dateTimeInter: currentDate.format(DATE_TIME_FORMAT),
+            complex: true
           },
           elemDefault
         );

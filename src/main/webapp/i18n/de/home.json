@@ -1,19 +1,19 @@
 {
   "home": {
-    "title": "Willkommen, Java Hipster!",
+    "title": "Willkommen, bei Fibre Hipster!",
     "subtitle": "Dies ist Ihre Hauptseite",
     "logged": {
       "message": "Sie sind als Benutzer \"{{username}}\" angemeldet."
     },
-    "question": "Wenn Sie Fragen zu JHipster haben:",
+    "question": "Wenn Sie Fragen zu Fibre Hipster haben:",
     "link": {
       "homepage": "JHipster Hauptseite",
       "stackoverflow": "JHipster auf Stack Overflow",
-      "bugtracker": "JHipster Fehlereinträge",
+      "bugtracker": "Fibre Hipster Fehlereinträge",
       "chat": "JHipster Chat",
-      "follow": "kontaktieren Sie uns mit @java_hipster auf Twitter"
+      "follow": "kontaktieren Sie uns mit @CherOliv auf Twitter"
     },
-    "like": "Wenn Sie JHipster mögen, vergessen Sie nicht uns einen Stern zu geben auf",
+    "like": "Wenn Sie Fibre Hipster mögen, vergessen Sie nicht uns einen Stern zu geben auf",
     "github": "GitHub"
   }
 }

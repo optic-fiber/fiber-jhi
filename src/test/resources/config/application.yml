@@ -18,19 +18,18 @@ spring:
     name: fiber
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:fiber;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MULTI_THREADED=FALSE
-    name:
-    username:
-    password:
+    url: jdbc:postgresql://localhost:5432/fiberjhipstertest
+    username: tech
+    password: tech
     hikari:
       auto-commit: false
   jpa:
-    database-platform: io.github.jhipster.domain.util.FixedH2Dialect
-    database: H2
+    database-platform: io.github.jhipster.domain.util.FixedPostgreSQL95Dialect
+    database: POSTGRESQL
     open-in-view: false
-    show-sql: false
+    show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       naming:
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
@@ -40,8 +39,9 @@ spring:
       hibernate.cache.use_second_level_cache: false
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
-      hibernate.hbm2ddl.auto: validate
+      #      hibernate.hbm2ddl.auto: validate
       hibernate.jdbc.time_zone: UTC
+  #    generate-ddl: true
   liquibase:
     contexts: test
   mail:

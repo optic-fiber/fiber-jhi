@@ -39,6 +39,10 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="complex" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
             <column name="planning_id" type="bigint">
                 <constraints nullable="false" />
             </column>
@@ -74,6 +78,7 @@
             <column name="last_name_client" type="string"/>
             <column name="first_name_client" type="string"/>
             <column name="date_time_inter" type="datetime"/>
+            <column name="complex" type="boolean"/>
             <column name="planning_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>

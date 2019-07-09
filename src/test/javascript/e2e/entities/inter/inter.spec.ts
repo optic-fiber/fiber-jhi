@@ -52,6 +52,14 @@ describe('Inter e2e test', () => {
         expect(await interUpdatePage.getLastNameClientInput()).to.eq('lastNameClient', 'Expected LastNameClient value to be equals to lastNameClient');
         expect(await interUpdatePage.getFirstNameClientInput()).to.eq('firstNameClient', 'Expected FirstNameClient value to be equals to firstNameClient');
         expect(await interUpdatePage.getDateTimeInterInput()).to.contain('2001-01-01T02:30', 'Expected dateTimeInter value to be equals to 2000-12-31');
+        const selectedComplex = interUpdatePage.getComplexInput();
+        if (await selectedComplex.isSelected()) {
+            await interUpdatePage.getComplexInput().click();
+            expect(await interUpdatePage.getComplexInput().isSelected(), 'Expected complex not to be selected').to.be.false;
+        } else {
+            await interUpdatePage.getComplexInput().click();
+            expect(await interUpdatePage.getComplexInput().isSelected(), 'Expected complex to be selected').to.be.true;
+        }
         await interUpdatePage.save();
         expect(await interUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 

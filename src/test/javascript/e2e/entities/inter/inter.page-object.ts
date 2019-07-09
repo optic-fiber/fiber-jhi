@@ -32,6 +32,7 @@ export class InterUpdatePage {
   lastNameClientInput = element(by.id('field_lastNameClient'));
   firstNameClientInput = element(by.id('field_firstNameClient'));
   dateTimeInterInput = element(by.id('field_dateTimeInter'));
+  complexInput = element(by.id('field_complex'));
   planningSelect = element(by.id('field_planning'));
 
   async getPageTitle() {
@@ -98,6 +99,10 @@ export class InterUpdatePage {
 
   async getDateTimeInterInput() {
     return await this.dateTimeInterInput.getAttribute('value');
+  }
+
+  getComplexInput(timeout?: number) {
+    return this.complexInput;
   }
 
   async planningSelectLastOption(timeout?: number) {

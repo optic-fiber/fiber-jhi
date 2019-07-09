@@ -66,6 +66,10 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "complex",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20190708142344",
