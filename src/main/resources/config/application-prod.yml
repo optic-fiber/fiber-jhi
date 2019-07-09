@@ -42,7 +42,7 @@ spring:
   jpa:
     database-platform: io.github.jhipster.domain.util.FixedPostgreSQL95Dialect
     database: POSTGRESQL
-    show-sql: false
+    show-sql: true
     properties:
       hibernate.id.new_generator_mappings: true
       hibernate.connection.provider_disables_autocommit: true
@@ -50,7 +50,7 @@ spring:
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
   # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
   liquibase:
     contexts: prod

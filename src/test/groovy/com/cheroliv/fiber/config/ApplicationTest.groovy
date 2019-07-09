@@ -26,28 +26,6 @@ import java.time.format.DateTimeFormatter
 @TestMethodOrder(MethodOrderer.OrderAnnotation)
 class ApplicationTest {
 
-
-//    @Test
-//    @Order(1)
-//    @DisplayName("Test Spring Context")
-//    void contextLoads() {
-//        log.info("context loaded")
-//    }
-
-//    @Test
-//    @Order(2)
-//    @DisplayName("Test Spring Validator injection")
-//    void testContextContainsValidator() {
-//        assert validator.class.name == LocalValidatorFactoryBean.class.name
-//    }
-
-//    @Test
-//    @Order(3)
-//    @DisplayName("Test Spring context contains SecurityProblemSupport")
-//    void testContextContainsSecurityProblemSupport() {
-//        assert SecurityProblemSupport.name ==
-//            applicationContext.getBean(SecurityProblemSupport).class.name
-//    }
     synchronized static LocalTime parseStringHeureToLocalTime(String strHeure) {
         LocalTime.of(Integer.parseInt("${strHeure.charAt(0)}${strHeure.charAt(1)}"), 0)
     }

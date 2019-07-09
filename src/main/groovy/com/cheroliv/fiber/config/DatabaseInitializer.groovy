@@ -1,17 +1,24 @@
 package com.cheroliv.fiber.config
 
 import com.cheroliv.fiber.domain.Authority
+import com.cheroliv.fiber.domain.Inter
 import com.cheroliv.fiber.domain.Planning
 import com.cheroliv.fiber.domain.User
 import com.cheroliv.fiber.repository.AuthorityRepository
+import com.cheroliv.fiber.repository.InterRepository
 import com.cheroliv.fiber.repository.PlanningRepository
 import com.cheroliv.fiber.repository.UserRepository
 import com.cheroliv.fiber.security.AuthoritiesConstants
 import com.cheroliv.fiber.service.UserService
 import com.cheroliv.fiber.service.dto.UserDTO
+import com.fasterxml.jackson.core.type.TypeReference
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.ApplicationContext
+import org.springframework.context.ApplicationContextAware
 import org.springframework.stereotype.Component
 
 import javax.annotation.PostConstruct
@@ -23,11 +30,12 @@ import java.time.ZonedDateTime
 @CompileStatic
 @Transactional
 @Component
-class DatabaseInitializer {
+class DatabaseInitializer implements ApplicationContextAware {
     final UserService userService
     final AuthorityRepository authorityRepository
     final UserRepository userRepository
     final PlanningRepository planningRepository
+    ApplicationContext applicationContext
 
     @Autowired
     DatabaseInitializer(UserService userService,
@@ -91,9 +99,8 @@ class DatabaseInitializer {
             ] as Set
             userRepository.save(user)
             createDefaultPlanning()
+            loadInters()
         }
-
-
 
 
         if (!optionalAdminUser.present) {
@@ -114,7 +121,6 @@ class DatabaseInitializer {
             ] as Set
             userRepository.save(user)
         }
-
 
 
         if (!optionalSystemUser.present) {
@@ -149,5 +155,25 @@ class DatabaseInitializer {
         }
 
 
+    }
+
+    void loadInters() {
+        Optional<Planning> optionalPlanning = planningRepository
+            .findByUserLoginAndOpen("user")
+        if (!optionalPlanning.empty) {
+            Planning planning = optionalPlanning.get()
+            File jsonFile = applicationContext.getResource(
+                "classpath:inter.json").file
+            ObjectMapper mapper = new ObjectMapper()
+            mapper.registerModule(new JavaTimeModule())
+            List<Inter> inters = mapper.readValue(
+                jsonFile.text,
+                new TypeReference<List<Inter>>() {})
+            inters.each {
+                log.info(it.toString())
+                it.planning = planning
+                applicationContext.getBean(InterRepository).save(it)
+            }
+        }
     }
 }
