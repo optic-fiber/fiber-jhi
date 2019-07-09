@@ -35,17 +35,20 @@ class DatabaseInitializer implements ApplicationContextAware {
     final AuthorityRepository authorityRepository
     final UserRepository userRepository
     final PlanningRepository planningRepository
+    final InterRepository interRepository
     ApplicationContext applicationContext
 
     @Autowired
     DatabaseInitializer(UserService userService,
                         AuthorityRepository authorityRepository,
                         UserRepository userRepository,
-                        PlanningRepository planningRepository) {
+                        PlanningRepository planningRepository,
+    InterRepository interRepository) {
         this.userService = userService
         this.authorityRepository = authorityRepository
         this.userRepository = userRepository
         this.planningRepository = planningRepository
+        this.interRepository=interRepository
     }
 
     @PostConstruct
@@ -170,9 +173,8 @@ class DatabaseInitializer implements ApplicationContextAware {
                 jsonFile.text,
                 new TypeReference<List<Inter>>() {})
             inters.each {
-                log.info(it.toString())
                 it.planning = planning
-                applicationContext.getBean(InterRepository).save(it)
+                interRepository.save(it)
             }
         }
     }
