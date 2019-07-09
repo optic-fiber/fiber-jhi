@@ -1,0 +1,11 @@
+@startuml
+(*)  --> "homePage"
+If "do you have an account" then
+--> [No] "createAccount" as createAccount
+createAccount --> "createDefaultPlanning"
+--> "signIn"
+else
+--> [Yes]"signIn"
+Endif
+-->(*)
+@enduml

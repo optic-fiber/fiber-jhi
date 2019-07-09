@@ -43,6 +43,17 @@ apply from: "gradle/docker.gradle"
 apply from: "gradle/sonar.gradle"
 apply from: "gradle/swagger.gradle"
 //jhipster-needle-gradle-apply-from - JHipster will add additional gradle scripts to be applied here
+sourceSets {
+    main {
+        java { srcDirs = [] }
+        groovy { srcDirs =['src/main/java', 'src/main/groovy'] }
+    }
+    test {
+        java { srcDirs = [] }
+        groovy { srcDirs =['src/test/java', 'src/test/groovy'] }
+    }
+}
+
 
 if (project.hasProperty("prod")) {
     apply from: "gradle/profile_prod.gradle"
@@ -302,6 +313,5 @@ if (project.hasProperty("nodeInstall")) {
     }
 }
 
-//compileJava.dependsOn processResources
 compileGroovy.dependsOn processResources
 processResources.dependsOn bootBuildInfo
