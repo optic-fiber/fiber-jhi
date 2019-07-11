@@ -22,7 +22,7 @@
   {
     "id": "3",
     "nd": "0140357569",
-    "lastNameClient": "",
+    "lastNameClient": "unknown",
     "firstNameClient": "",
     "hour": "10:00:00",
     "date": "2018-10-30",
@@ -32,7 +32,7 @@
   {
     "id": "4",
     "nd": "0142586242",
-    "lastNameClient": "",
+    "lastNameClient": "unknown",
     "firstNameClient": "",
     "hour": "14:00:00",
     "date": "2018-10-30",
@@ -2948,16 +2948,6 @@
     "date": "2019-05-17",
     "contract": "LM",
     "typeInter": "BAAP"
-  },
-  {
-    "id": "296",
-    "nd": "null",
-    "lastNameClient": "Ars Symphonia",
-    "firstNameClient": "null",
-    "hour": "08:00:00",
-    "date": "2019-05-16",
-    "contract": "LM",
-    "typeInter": "PLP"
   },
   {
     "id": "297",

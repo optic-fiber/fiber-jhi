@@ -114,11 +114,11 @@ springBoot {
 }
 
 test {
-    useJUnitPlatform()
-//    useJUnitPlatform{
-//        excludeEngines 'junit-vintage'
-//        includeEngines 'junit-jupiter'
-//    }
+//    useJUnitPlatform()
+    useJUnitPlatform{
+        excludeEngines 'junit-vintage'
+        includeEngines 'junit-jupiter'
+    }
     exclude "**/*IT*", "**/*IntTest*"
     testLogging {
         events 'FAILED', 'SKIPPED'

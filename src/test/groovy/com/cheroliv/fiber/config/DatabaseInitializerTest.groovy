@@ -1,8 +1,10 @@
 package com.cheroliv.fiber.config
 
 import com.cheroliv.fiber.domain.Inter
+import com.cheroliv.fiber.domain.Planning
 import com.cheroliv.fiber.domain.enumeration.ContractEnum
 import com.cheroliv.fiber.domain.enumeration.TypeInterEnum
+import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import groovy.json.JsonSlurper
@@ -12,6 +14,9 @@ import org.apache.commons.lang3.StringUtils
 import org.junit.jupiter.api.*
 import org.springframework.test.context.ActiveProfiles
 
+import javax.validation.ConstraintViolation
+import javax.validation.Validation
+import javax.validation.Validator
 import java.nio.charset.StandardCharsets
 import java.nio.file.FileSystems
 import java.time.LocalDate
@@ -24,7 +29,15 @@ import java.time.format.DateTimeFormatter
 @CompileStatic
 @ActiveProfiles("test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation)
-class ApplicationTest {
+class DatabaseInitializerTest {
+
+    static Validator validator
+
+
+    @BeforeAll
+    static void setUp() {
+        validator = Validation.buildDefaultValidatorFactory().validator
+    }
 
     synchronized static LocalTime parseStringHeureToLocalTime(String strHeure) {
         LocalTime.of(Integer.parseInt("${strHeure.charAt(0)}${strHeure.charAt(1)}"), 0)
@@ -46,6 +59,7 @@ class ApplicationTest {
     @Test
     @DisplayName("Test insert inter.json")
     void testProperJsonFileExistsOrBuildIt() {
+        log.info("test #1")
         String strPath = FileSystems.getDefault().getPath(".").toAbsolutePath().toString()
         String jsonInterFilePath = StringUtils.chop(strPath)
         jsonInterFilePath = jsonInterFilePath + "src/test/resources/inter_.json"
@@ -101,7 +115,26 @@ class ApplicationTest {
 
     @Order(2)
     @Test
-    void test_sth() {
+    @DisplayName("test DatabaseInitializer.loadInters() logic")
+    void test_interjsonFile_isValidData() {
         log.info("test #2")
+        String strPath = FileSystems.getDefault().getPath(".").toAbsolutePath().toString()
+        String jsonInterFilePath = StringUtils.chop(strPath)
+        jsonInterFilePath = jsonInterFilePath + "src/test/resources/inter.json"
+
+        Planning planning = new Planning()
+        File jsonFile = new File(jsonInterFilePath)
+        ObjectMapper mapper = new ObjectMapper()
+        mapper.registerModule(new JavaTimeModule())
+        List<Inter> inters = mapper.readValue(
+            jsonFile.text,
+            new TypeReference<List<Inter>>() {})
+        Set<ConstraintViolation<Inter>> constraintViolations
+        inters.each { Inter it ->
+            it.id = null
+            it.planning = planning
+            constraintViolations = validator.validate(it)
+            assert constraintViolations.empty
+        }
     }
 }
