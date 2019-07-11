@@ -1,13 +1,10 @@
-package com.cheroliv.fiber.config
+package com.cheroliv.fiber.repository
+
 
 import com.cheroliv.fiber.domain.Authority
 import com.cheroliv.fiber.domain.Inter
 import com.cheroliv.fiber.domain.Planning
 import com.cheroliv.fiber.domain.User
-import com.cheroliv.fiber.repository.AuthorityRepository
-import com.cheroliv.fiber.repository.InterRepository
-import com.cheroliv.fiber.repository.PlanningRepository
-import com.cheroliv.fiber.repository.UserRepository
 import com.cheroliv.fiber.security.AuthoritiesConstants
 import com.cheroliv.fiber.service.UserService
 import com.cheroliv.fiber.service.dto.UserDTO
@@ -27,9 +24,9 @@ import java.time.ZoneId
 import java.time.ZonedDateTime
 
 @Slf4j
+@Component
 @CompileStatic
 @Transactional
-@Component
 class DatabaseInitializer implements ApplicationContextAware {
     final UserService userService
     final AuthorityRepository authorityRepository
@@ -43,12 +40,12 @@ class DatabaseInitializer implements ApplicationContextAware {
                         AuthorityRepository authorityRepository,
                         UserRepository userRepository,
                         PlanningRepository planningRepository,
-    InterRepository interRepository) {
+                        InterRepository interRepository) {
         this.userService = userService
         this.authorityRepository = authorityRepository
         this.userRepository = userRepository
         this.planningRepository = planningRepository
-        this.interRepository=interRepository
+        this.interRepository = interRepository
     }
 
     @PostConstruct
@@ -102,7 +99,10 @@ class DatabaseInitializer implements ApplicationContextAware {
             ] as Set
             userRepository.save(user)
             createDefaultPlanning()
-            loadInters()
+            !applicationContext
+                .environment
+                .activeProfiles
+                .contains("dev") ?: loadInters()
         }
 
 
@@ -156,8 +156,6 @@ class DatabaseInitializer implements ApplicationContextAware {
             user.authorities = [] as Set
             userRepository.save(user)
         }
-
-
     }
 
     void loadInters() {
@@ -167,15 +165,16 @@ class DatabaseInitializer implements ApplicationContextAware {
             Planning planning = optionalPlanning.get()
             File jsonFile = applicationContext.getResource(
                 "classpath:inter.json").file
-            ObjectMapper mapper = new ObjectMapper()
-            mapper.registerModule(new JavaTimeModule())
+            ObjectMapper mapper = applicationContext.getBean(ObjectMapper)
+            mapper.registerModule(applicationContext.getBean(JavaTimeModule))
             List<Inter> inters = mapper.readValue(
                 jsonFile.text,
                 new TypeReference<List<Inter>>() {})
             inters.each {
+                it.id = null
                 it.planning = planning
-                interRepository.save(it)
             }
+            interRepository.saveAll(inters)
         }
     }
 }

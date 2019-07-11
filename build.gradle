@@ -300,9 +300,9 @@ task cleanResources(type: Delete) {
     delete "build/resources"
 }
 
-wrapper {
-    gradleVersion = "5.4.1"
-}
+//wrapper {
+//    gradleVersion = "5.4.1"
+//}
 
 if (project.hasProperty("nodeInstall")) {
     node {

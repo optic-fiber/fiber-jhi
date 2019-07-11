@@ -45,7 +45,7 @@ spring:
   jpa:
     database-platform: io.github.jhipster.domain.util.FixedPostgreSQL95Dialect
     database: POSTGRESQL
-    show-sql: true
+    show-sql: false
     properties:
       hibernate.id.new_generator_mappings: true
       hibernate.connection.provider_disables_autocommit: true
@@ -53,7 +53,7 @@ spring:
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
