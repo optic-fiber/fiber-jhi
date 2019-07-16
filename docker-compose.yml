@@ -1,0 +1,17 @@
+version: '2'
+services:
+  fiber-app:
+    image: fiber
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=prod,swagger'
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://fiber-postgresql:5433/fiberjhipster'
+      - JHIPSTER_SLEEP=30
+    ports:
+      - '8080:8080'
+  fiber-postgresql:
+    image: 'postgres:11.3'
+    environment:
+      - POSTGRES_USER=tech
+      - POSTGRES_PASSWORD=tech

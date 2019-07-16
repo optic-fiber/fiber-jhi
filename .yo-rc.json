@@ -35,6 +35,10 @@
     "otherModules": [],
     "enableTranslation": true,
     "nativeLanguage": "fr",
-    "languages": ["fr", "en", "de", "es"]
+    "languages": ["fr", "en", "de", "es"],
+    "appsFolders": ["fiber-jhi"],
+    "directoryPath": "../",
+    "monitoring": "no",
+    "consoleOptions": []
   }
 }

@@ -5,7 +5,7 @@ services:
     # volumes:
     #     - ~/volumes/jhipster/fiber/postgresql/:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=fiber
-      - POSTGRES_PASSWORD=
+      - POSTGRES_USER=tech
+      - POSTGRES_PASSWORD=tech
     ports:
-      - 5432:5432
+      - 5433:5433
